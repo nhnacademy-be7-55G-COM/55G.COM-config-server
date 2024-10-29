@@ -14,6 +14,10 @@ repository:
 password:
   id: db1d5af2be7347c58fa75b500e882dab
 
+encrypt:
+  id: 4daedecda3764a75a58614ea0d577444
+  key: ${encrypt-key}
+
 # config server
 spring:
   application:
