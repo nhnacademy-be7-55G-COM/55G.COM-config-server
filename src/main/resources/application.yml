@@ -1,18 +1,11 @@
 server:
   port: 9000
 
-config:
-  user:
-    name: admin
-
 key:
   path: https://api-keymanager.nhncloudservice.com/keymanager/v1.0/appkey/500rMJPT021TnyNl/secrets/
 
 repository:
   id: ebd3c3842fdf44bb8ed92ab709e418d0
-
-password:
-  id: db1d5af2be7347c58fa75b500e882dab
 
 encrypt:
   id: 4daedecda3764a75a58614ea0d577444
