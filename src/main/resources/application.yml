@@ -25,3 +25,47 @@ spring:
           default-label: main
           ignore-local-ssh-settings: true
           private-key: ${config.repository.key}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: live
+
+55g:
+  log:
+    path: /logs/live/config
+
+logging:
+  file:
+    name: ${55g.log.path}/config-live.log
+  logback:
+    rollingpolicy:
+      max-history: 100
+      file-name-pattern: ${55g.log.path}/config-live-%d{yyyy-MM-dd}.%i.log
+      max-file-size: 100KB
+  level:
+    root: info
+    com.S5G.gateway: info
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+55g:
+  log:
+    path: /logs/dev/config
+
+logging:
+  file:
+    name: ${55g.log.path}/config-dev.log
+  logback:
+    rollingpolicy:
+      max-history: 30
+      file-name-pattern: ${55g.log.path}/config-dev-%d{yyyy-MM-dd}.%i.log
+      max-file-size: 100KB
+  level:
+    root: debug
+    com.S5G.gateway: trace
