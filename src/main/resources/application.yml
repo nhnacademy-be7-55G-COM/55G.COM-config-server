@@ -16,6 +16,12 @@ spring:
   application:
     name: config-server
 
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
   cloud:
     config:
       server:
@@ -25,6 +31,15 @@ spring:
           default-label: main
           ignore-local-ssh-settings: true
           private-key: ${config.repository.key}
+
+    bus:
+      enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
 
 ---
 spring:
