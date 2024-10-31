@@ -1,23 +1,29 @@
 server:
   port: 9000
 
-config:
-  user:
-    name: admin
-
 key:
   path: https://api-keymanager.nhncloudservice.com/keymanager/v1.0/appkey/500rMJPT021TnyNl/secrets/
 
 repository:
   id: ebd3c3842fdf44bb8ed92ab709e418d0
 
-password:
-  id: db1d5af2be7347c58fa75b500e882dab
+encrypt:
+  id: 4daedecda3764a75a58614ea0d577444
+  key: ${encrypt-key}
+
+rabbitmq:
+  host: localhost
 
 # config server
 spring:
   application:
     name: config-server
+
+  rabbitmq:
+    host: ${rabbitmq.host}
+    port: 5672
+    username: guest
+    password: guest
 
   cloud:
     config:
@@ -28,3 +34,62 @@ spring:
           default-label: main
           ignore-local-ssh-settings: true
           private-key: ${config.repository.key}
+
+    bus:
+      enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+---
+spring:
+  config:
+    activate:
+      on-profile: live
+
+rabbitmq:
+  host: host.docker.internal
+
+55g:
+  log:
+    path: /logs/live/config
+
+logging:
+  file:
+    name: ${55g.log.path}/config-live.log
+  logback:
+    rollingpolicy:
+      max-history: 100
+      file-name-pattern: ${55g.log.path}/config-live-%d{yyyy-MM-dd}.%i.log
+      max-file-size: 100KB
+  level:
+    root: info
+    com.S5G.gateway: info
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+rabbitmq:
+  host: host.docker.internal
+
+55g:
+  log:
+    path: /logs/dev/config
+
+logging:
+  file:
+    name: ${55g.log.path}/config-dev.log
+  logback:
+    rollingpolicy:
+      max-history: 30
+      file-name-pattern: ${55g.log.path}/config-dev-%d{yyyy-MM-dd}.%i.log
+      max-file-size: 100KB
+  level:
+    root: debug
+    com.S5G.gateway: trace

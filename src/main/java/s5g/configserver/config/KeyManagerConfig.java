@@ -16,15 +16,16 @@ public class KeyManagerConfig {
     @Value("${repository.id}")
     private String repoKeyId;
 
-    @Value("${password.id}")
-    private String passwordKeyId;
+    @Value("${encrypt.id}")
+    private String encryptKeyId;
 
     @Bean
     public String loadPrivateKey() {
         String privateKey = retrievePrivateKey(keyPath + repoKeyId);
-        String password = retrievePrivateKey(keyPath + passwordKeyId);
+        String encryptKey = retrievePrivateKey(keyPath + encryptKeyId);
+
         System.setProperty("config.repository.key", privateKey);
-        System.setProperty("config.user.password", password);
+        System.setProperty("encrypt-key", encryptKey);
         return privateKey;
     }
 
