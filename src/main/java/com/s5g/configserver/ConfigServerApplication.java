@@ -1,4 +1,4 @@
-package s5g.configserver;
+package com.s5g.configserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
