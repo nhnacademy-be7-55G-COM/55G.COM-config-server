@@ -9,7 +9,7 @@
     <version>3.3.5</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
-  <groupId>com.s5g</groupId>
+  <groupId>shop.s5g</groupId>
   <artifactId>config-server</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>config-server</name>
