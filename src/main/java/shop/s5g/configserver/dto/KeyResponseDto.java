@@ -1,4 +1,4 @@
-package com.s5g.configserver.dto;
+package shop.s5g.configserver.dto;
 
 import lombok.Getter;
 import lombok.Setter;

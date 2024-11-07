@@ -1,12 +1,12 @@
-package com.s5g.configserver.config;
+package shop.s5g.configserver.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-import com.s5g.configserver.dto.BodyDto;
-import com.s5g.configserver.dto.KeyResponseDto;
+import shop.s5g.configserver.dto.BodyDto;
+import shop.s5g.configserver.dto.KeyResponseDto;
 
 @Configuration
 public class KeyManagerConfig {
