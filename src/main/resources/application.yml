@@ -67,7 +67,7 @@ logging:
       max-file-size: 100KB
   level:
     root: info
-    com.S5G.gateway: info
+    shop.s5g.configserver: info
 
 ---
 spring:
@@ -89,7 +89,9 @@ logging:
     rollingpolicy:
       max-history: 30
       file-name-pattern: ${55g.log.path}/config-dev-%d{yyyy-MM-dd}.%i.log
-      max-file-size: 100KB
+      max-file-size: 1MB
   level:
     root: debug
-    com.S5G.gateway: trace
+    shop.s5g.configserver: trace
+    sun.rmi: info
+    javax.management.remote.rmi: info
