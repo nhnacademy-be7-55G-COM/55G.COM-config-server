@@ -1,4 +1,4 @@
-package s5g.configserver;
+package shop.s5g.configserver;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
