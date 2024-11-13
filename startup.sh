@@ -9,10 +9,10 @@ server_port=9000
 network_bridge="55g-live"
 
 if [ "$profile" == "--dev" ]; then
-	container_name="55g-config-dev"
-	spring_env="dev"
-	server_port=9050
-	network_bridge="55g-dev"
+  container_name="55g-config-dev"
+  spring_env="dev"
+  server_port=9050
+  network_bridge="55g-dev"
 fi
 
 cd $ABSOLUTE_PATH
@@ -32,13 +32,13 @@ fi
 i=0
 for line in $docker_ps; do
   ps_arr[i]=$line
-  i=$((i+1))
+  i=$((i + 1))
 done
 
-for ((i=1; i<${#ps_arr[@]}; i++)); do
-    echo "Removing container ${ps_arr[i]}..."
-    docker stop ${ps_arr[i]}
-    docker rm ${ps_arr[i]}
+for ((i = 1; i < ${#ps_arr[@]}; i++)); do
+  echo "Removing container ${ps_arr[i]}..."
+  docker stop ${ps_arr[i]}
+  docker rm ${ps_arr[i]}
 done
 
 echo "Building docker image..."
@@ -46,13 +46,14 @@ docker build -t $image_name-$spring_env .
 
 echo "Creating container for service..."
 docker run -d --name $container_name \
-       --network $network_bridge \
-       --env SPRING_PROFILE=$spring_env \
-       --env SERVER_PORT=$server_port \
-       --add-host host.docker.internal:host-gateway \
-       -p $server_port:$server_port \
-       -v /logs:/logs \
-       $image_name-$spring_env
+  --network $network_bridge \
+  --env SPRING_PROFILE=$spring_env \
+  --env SERVER_PORT=$server_port \
+  --add-host host.docker.internal:host-gateway \
+  --memory="150m" --memory-swap="250m" \
+  -p $server_port:$server_port \
+  -v /logs:/logs \
+  $image_name-$spring_env
 
 echo "Pruning images..."
 docker image prune --force
