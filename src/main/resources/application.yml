@@ -12,7 +12,7 @@ encrypt:
   key: ${encrypt-key}
 
 rabbitmq:
-  host: localhost
+  id: 007814b7d19147fc8cbf0ba7ea38ee8f
 
 # config server
 spring:
@@ -20,10 +20,10 @@ spring:
     name: config-server
 
   rabbitmq:
-    host: ${rabbitmq.host}
-    port: 5672
-    username: guest
-    password: guest
+    host: host
+    port: 0
+    username: username
+    password: password
 
   cloud:
     config:
@@ -50,9 +50,6 @@ spring:
     activate:
       on-profile: live
 
-rabbitmq:
-  host: host.docker.internal
-
 55g:
   log:
     path: /logs/live/config
@@ -74,9 +71,6 @@ spring:
   config:
     activate:
       on-profile: dev
-
-rabbitmq:
-  host: host.docker.internal
 
 55g:
   log:
