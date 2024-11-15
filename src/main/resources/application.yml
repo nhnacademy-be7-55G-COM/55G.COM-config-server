@@ -12,7 +12,7 @@ encrypt:
   key: ${encrypt-key}
 
 rabbitmq:
-  host: localhost
+  id: 007814b7d19147fc8cbf0ba7ea38ee8f
 
 # config server
 spring:
@@ -20,10 +20,10 @@ spring:
     name: config-server
 
   rabbitmq:
-    host: ${rabbitmq.host}
-    port: 5672
-    username: guest
-    password: guest
+    host: host
+    port: 0
+    username: username
+    password: password
 
   cloud:
     config:
@@ -50,9 +50,6 @@ spring:
     activate:
       on-profile: live
 
-rabbitmq:
-  host: host.docker.internal
-
 55g:
   log:
     path: /logs/live/config
@@ -67,16 +64,13 @@ logging:
       max-file-size: 100KB
   level:
     root: info
-    com.S5G.gateway: info
+    shop.s5g.configserver: info
 
 ---
 spring:
   config:
     activate:
       on-profile: dev
-
-rabbitmq:
-  host: host.docker.internal
 
 55g:
   log:
@@ -89,7 +83,9 @@ logging:
     rollingpolicy:
       max-history: 30
       file-name-pattern: ${55g.log.path}/config-dev-%d{yyyy-MM-dd}.%i.log
-      max-file-size: 100KB
+      max-file-size: 1MB
   level:
     root: debug
-    com.S5G.gateway: trace
+    shop.s5g.configserver: trace
+    sun.rmi: info
+    javax.management.remote.rmi: info
