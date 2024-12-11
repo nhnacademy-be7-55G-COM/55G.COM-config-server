@@ -24,6 +24,7 @@ spring:
     port: 0
     username: username
     password: password
+    virtual-host: vh1
 
   cloud:
     config:
